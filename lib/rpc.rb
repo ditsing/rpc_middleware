@@ -59,8 +59,10 @@ class RPCServer
 				Thread.start( server.accept) do |client|
 					client = RPCSocket.new client
 					call = client.recv_rpc_call
+
 					puts "Server: get call " + call.function_name.to_s
 					puts "Server: with argv " + call.argv.to_s
+
 					call.run
 					client.send_rpc_call call
 				end
@@ -77,6 +79,7 @@ class RPCClient
 		def send_call call
 			server = TCPSocket.open( RPCConfigure::Server, RPCConfigure::CallPort)
 			server = RPCSocket.new server
+
 			puts "sending " + call.function_name.to_s
 			puts "sending " + call.argv.to_s
 
@@ -85,6 +88,7 @@ class RPCClient
 
 			puts "recving " + call.ret_val.to_s
 			puts "recving " + call.error.to_s
+
 			return call
 		end
 	end
@@ -98,6 +102,7 @@ class RPC
 		def method_missing( method_name, *argv, &block)
 			puts "method_missing: get method " + method_name.to_s
 			puts "method_missing: get argv " + argv.to_s
+
 			raise ArgumentError, 'Cannot make RPC call with a block' if block
 
 			define_singleton_method method_name do | *method_argv|
