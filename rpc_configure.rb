@@ -3,7 +3,7 @@ module RPCConfigure
 	ListenPort  	= 6898
 	CallPort	= 6899
 	Server 		= "127.0.0.1"
-	ModelDir 	= "rpc_model"
+	ModelDir 	= "module"
 end
 
 
