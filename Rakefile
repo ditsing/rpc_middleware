@@ -42,3 +42,8 @@ task :update do
 	end
 	File.rename( new_file_name, old_file_name)
 end
+
+task :server do
+	require_relative 'lib/rpc'
+	RPCServer.listen
+end

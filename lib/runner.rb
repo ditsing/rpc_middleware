@@ -1,10 +1,10 @@
 #!/usr/bin/env ruby
 
+require 'singleton'
 require_relative '../rpc_configure'
 require_relative '../rpc_module_list'
 
-class RPCRunner
+class RPCRunner < RPCModuleList
 	include Singleton
-	include RPCModuleList
 end
 

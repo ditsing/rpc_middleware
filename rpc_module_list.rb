@@ -3,7 +3,8 @@
 require_relative 'rpc_configure'
 Dir[File.dirname(__FILE__) + '/' + RPCConfigure::ModelDir + '/*.rb'].each {|file| require file }
 
-module RPCModuleList
+class RPCModuleList
 ##@RPCModuleList
+	extend ListSort
 ##@RPCModuleList
 end
