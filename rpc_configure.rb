@@ -5,6 +5,8 @@ module RPCConfigure
 	Server 		= '127.0.0.1'
 	ModelDir 	= 'module'
 	DelimterString 	= 'RPC Call End'
+	ModuleTemplate 	= 'rpc_module_list_template.rb'
+	ModuleList 	= 'rpc_module_list.rb'
 end
 
 

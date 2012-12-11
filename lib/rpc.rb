@@ -54,19 +54,17 @@ class RPCServer
 
 	class << self
 		def listen
-#			@thread = Thread.new do
-				server = TCPServer.open( RPCConfigure::CallPort)
-				loop do
-					Thread.start( server.accept) do |client|
-						client = RPCSocket.new client
-						call = client.recv_rpc_call
-						puts "Server: get call " + call.function_name.to_s
-						puts "Server: with argv " + call.argv.to_s
-						call.run
-						client.send_rpc_call call
-					end
+			server = TCPServer.open( RPCConfigure::CallPort)
+			loop do
+				Thread.start( server.accept) do |client|
+					client = RPCSocket.new client
+					call = client.recv_rpc_call
+					puts "Server: get call " + call.function_name.to_s
+					puts "Server: with argv " + call.argv.to_s
+					call.run
+					client.send_rpc_call call
 				end
-#			end
+			end
 		end
 	end
 end

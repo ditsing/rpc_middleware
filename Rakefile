@@ -1,6 +1,6 @@
 desc "Update rpc module list"
 task :update do
-	require_relative 'lib/rpc_module'
+	require_relative 'module/rpc_module'
 	$mod_list = []
 	module RPCModule
 		def RPCModule.extended mod
@@ -10,14 +10,14 @@ task :update do
 
 	require_relative 'rpc_module_list_template'
 
-	mod_extend_list = $mod_list.collect { |mod| "\textend " + mod.to_s + "\n"}
+	mod_extend_list = $mod_list.collect { |mod| RPCModule.include_module_str mod}
 
 	former_part = []
 	later_part = []
 
-	delimeter = '##@RPCModuleList' + "\n"
-	template_file_name = 'rpc_module_list_template.rb'
-	base_file_name = 'rpc_module_list.rb'
+	delimeter = '##@RPCModuleList'
+	template_file_name = RPCConfigure::ModuleTemplate
+	base_file_name = RPCConfigure::ModuleList
 	old_file_name = base_file_name
 	new_file_name = base_file_name + '.new'
 
@@ -28,13 +28,11 @@ task :update do
 	end
 
 	File.open( new_file_name, 'w') do |file|
-		former_part.each { |line| file.write line; puts line}
-		file.write delimeter
-		puts delimeter
-		mod_extend_list.each { |line| file.write line; puts line}
-		file.write delimeter
-		puts delimeter
-		later_part.each { |line| file.write line; puts line}
+		former_part.each { |line| file.write line}
+		file.puts delimeter
+		mod_extend_list.each { |line| file.write line}
+		file.puts delimeter
+		later_part.each { |line| file.write line}
 	end
 
 	if File.exist? old_file_name
