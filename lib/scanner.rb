@@ -1,21 +1,19 @@
 #!/usr/bin/ruby
 
-require 'rpc_configure'
-
 class Scanner
 	include Singleton
 	include RPCConfigure
-
-	def initialize
 
 	class << self
 		def read_list
 			list = []
 			File.open( FuncListName, "r") do |file|
 				file.flock( File::LOCK_SH)
-				file.each { |line| list.push line.chomp}
+				list = file.map { |line| line.chomp}
+
 				file.flock( FILE::LOCK_UN)
 			end
+			list
 		end
 
 		def merge_list!

@@ -8,7 +8,7 @@ task :update do
 		end
 	end
 
-	require_relative 'rpc_module_list'
+	require_relative 'rpc_module_list_template'
 
 	mod_extend_list = $mod_list.collect { |mod| "\textend " + mod.to_s + "\n"}
 
@@ -16,10 +16,12 @@ task :update do
 	later_part = []
 
 	delimeter = '##@RPCModuleList' + "\n"
-	old_file_name = 'rpc_module_list.rb'
-	new_file_name = 'rpc_module_list.rb.new'
+	template_file_name = 'rpc_module_list_template.rb'
+	base_file_name = 'rpc_module_list.rb'
+	old_file_name = base_file_name
+	new_file_name = base_file_name + '.new'
 
-	File.open( old_file_name, 'r') do |file|
+	File.open( template_file_name, 'r') do |file|
 		file.each { |line| break if line =~ /#{delimeter}/; former_part.push line}
 			file.each { |line| break if line =~ /#{delimeter}/}
 			file.each { |line| later_part.push line}
@@ -35,6 +37,8 @@ task :update do
 		later_part.each { |line| file.write line; puts line}
 	end
 
-	File.rename( old_file_name, old_file_name + '.bak')
+	if File.exist? old_file_name
+		File.rename( old_file_name, old_file_name + '.bak')
+	end
 	File.rename( new_file_name, old_file_name)
 end

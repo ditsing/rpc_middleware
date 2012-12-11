@@ -5,8 +5,5 @@ Dir[File.dirname(__FILE__) + '/' + RPCConfigure::ModelDir + '/*.rb'].each {|file
 
 module RPCModuleList
 ##@RPCModuleList
-	extend Ttest
-	extend Ttest3
-	extend Ttest7
 ##@RPCModuleList
 end
