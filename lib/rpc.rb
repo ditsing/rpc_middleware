@@ -9,7 +9,7 @@ class RPCCall
 
 	def initialize( function_name, *argv)
 		raise ArgumentError, 'function name must be string' \
-	       		unless function_name.kind_of? String
+	       		unless function_name.kind_of? Symbol
 		@function_name = function_name
 		@argv = *argv
 		@error = false
@@ -77,7 +77,7 @@ class RPCClient
 		def send_call call
 			server = TCPSocket.open( RPCConfigure::Server, RPCConfigure::CallPort)
 			server = RPCSocket.new server
-			puts "sending " + call.function_name
+			puts "sending " + call.function_name.to_s
 			puts "sending " + call.argv.to_s
 
 			server.send_rpc_call call
@@ -104,7 +104,7 @@ class RPC
 				puts "in method " + method_name.to_s
 				puts "with argv " + method_argv.to_s
 
-				call = RPCCall.new( method_name.to_s, *method_argv)
+				call = RPCCall.new( method_name, *method_argv)
 				call = RPCClient.send_call call
 
 				raise call.error if call.error
