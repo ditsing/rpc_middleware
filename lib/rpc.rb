@@ -35,13 +35,13 @@ class RPCSocket
 	def send_rpc_call call
 		call_str = Marshal.dump( call)
 		@socket.puts call_str
-		@socket.puts RPCConfigure::DelimterString
+		@socket.puts RPCConfigure::DelimiterString
 	end
 
 	def recv_rpc_call
 		call_str = ''
 		while part = @socket.gets do
-			break if part.chomp == RPCConfigure::DelimterString
+			break if part.chomp == RPCConfigure::DelimiterString
 			call_str += part
 		end
 		return Marshal.load( call_str)

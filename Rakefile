@@ -15,7 +15,7 @@ task :update do
 	former_part = []
 	later_part = []
 
-	delimeter = '##@RPCModuleList'
+	delimeter = RPCConfigure::ModuleDelimiter
 	template_file_name = RPCConfigure::ModuleTemplate
 	base_file_name = RPCConfigure::ModuleList
 	old_file_name = base_file_name
@@ -23,8 +23,8 @@ task :update do
 
 	File.open( template_file_name, 'r') do |file|
 		file.each { |line| break if line =~ /#{delimeter}/; former_part.push line}
-			file.each { |line| break if line =~ /#{delimeter}/}
-			file.each { |line| later_part.push line}
+		file.each { |line| break if line =~ /#{delimeter}/}
+		file.each { |line| later_part.push line}
 	end
 
 	File.open( new_file_name, 'w') do |file|
@@ -44,4 +44,8 @@ end
 task :server do
 	require_relative 'lib/rpc'
 	RPCServer.listen
+end
+
+task :test do
+	exec 'ruby test/test_run.rb'
 end
