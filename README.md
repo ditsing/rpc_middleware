@@ -1,4 +1,4 @@
-Middleware homework
+Middleware Homework
 ================
 
 RPC middleware. Support function calls start from a ruby program, and end at a ruby/python/php program.
@@ -30,7 +30,7 @@ How to add custom module
 ------------------------
 1. Ruby module
 	* Add a module which extends ```RPCModule```.
-	* Put the souce code file in ```RPCConfigure::ModuleDir```.
+	* Put the source file in ```RPCConfigure::ModuleDir```.
 	* All module method defined within this module will be exported as an RPC call.
 	* Example
 
@@ -46,7 +46,7 @@ How to add custom module
 			end
 		
 2. Python module
-	* Creat a new python souce code file in ```RPCConfigure::ModuleDir```.
+	* Creat a new python source file in ```RPCConfigure::ModuleDir```.
 	* All functions define with this file will be exported as an RPC call
 	* Example
 
