@@ -28,11 +28,9 @@ How to make RPC call
 How to add custom module
 ------------------------
 1. Ruby module:
-	* Creat a new ruby souce code file in ```RPCConfigure::ModuleDir```.
 	* Add a module which extends ```RPCModule```.
+	* Put the souce code file in ```RPCConfigure::ModuleDir```.
 	* All module method defined within this module will be exported as an RPC call.
-	* Module names will not be included into the RPC Call, just for a more clear logic.
-	* Other code of this file will be run only once when the server starts.
 	* Example
 
 			#!/usr/bin/env ruby
@@ -49,7 +47,6 @@ How to add custom module
 2. Python module:
 	* Creat a new python souce code file in ```RPCConfigure::ModuleDir```.
 	* All functions define with this file will be exported as an RPC call
-	* Source file name doesn't matter.
 	* Example
 
 			#!/usr/bin/env python
@@ -57,3 +54,6 @@ How to add custom module
 			def reverse_our_list(list):
 				list.reverse()
 				return list
+3. Both:
+	* Module/file names will **not** be included into the name of RPC call, just for logical clarity.
+	* Other code of the Ruby/Python source file will be run only once when the server starts.
