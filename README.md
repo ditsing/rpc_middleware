@@ -11,8 +11,9 @@ How to deploy RPC server
 
 How to make RPC call
 ------------------------
-1. ```require 'rpc'``` in your source code
-2. Every RPC call is a singleton method of class RPC
+1. ```require 'rpc'``` in your source code.
+2. Every RPC call is a singleton method of class RPC.
+4. Errors will be caught and re-throwed at the client side.
 3. Example
 
         #!/usr/bin/env ruby
