@@ -7,4 +7,4 @@ puts RPC.list_sort list
 
 puts RPC.reverse_our_list list
 
-puts RPC.list_sortt list
+puts RPC.no_such_method list

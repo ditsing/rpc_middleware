@@ -24,7 +24,7 @@ How to make RPC call
 
         puts RPC.reverse_our_list list
 
-        puts RPC.list_sortt list
+        puts RPC.no_such_method list
 
 How to add custom module
 ------------------------
