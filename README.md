@@ -5,9 +5,9 @@ RPC middleware. Support function calls start from a ruby program, and end at a r
 
 How to deploy RPC server
 ------------------------
-1. Clone this server
-3. Edit ```rpc_configure.rb``` to meet your needs
-2. Run ```rake server```
+1. Clone this reposiory.
+3. Edit ```rpc_configure.rb``` to meet your needs.
+2. Run ```rake server```.
 
 How to make RPC call
 ------------------------
