@@ -58,3 +58,4 @@ How to add custom module
 3. Both
 	* Module/file names will **NOT** be included into the name of RPC call, just for logical clarity.
 	* Other code of the Ruby/Python source file will be run only once when the server starts.
+	* Run ```rake update``` after adding modules.
